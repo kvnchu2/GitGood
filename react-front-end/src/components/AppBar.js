@@ -9,7 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Badge from '@material-ui/core/Badge';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       flexGrow: 1,
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function NavBar() {
+export default function NavBar(props) {
   const classes = useStyles();
 
   return (
@@ -36,7 +36,7 @@ export default function NavBar() {
           <Typography variant="h6" className={classes.title}>
             GitGood
           </Typography>
-          <IconButton aria-label="show 4 new favorites" color="inherit">
+          <IconButton aria-label="show 4 new favorites" color="inherit" onClick={()=>props.toLiked()}>
               <Badge badgeContent={4} color="secondary">
                 <FavoriteBorderIcon />
               </Badge>
