@@ -12,7 +12,7 @@ export default function RepoSummary(props) {
   const [state, setState] = useState({ color: "black" });
   const like = () => {
     axios.put("http://localhost:8081/favourites",{
-      user_id:1,
+      user_id:localStorage.getItem('username'),
       repoName:props.name,
       repoLanguage:props.language,
       repoDescription:props.description,

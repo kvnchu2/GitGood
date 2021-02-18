@@ -14,7 +14,7 @@ import ShowLiked from './components/showLiked';
 
 export default function Application(props) {
 
-  const { setUser, fetchData, state} = useApplicationData();
+  const { setStorage, setUser, fetchData, state} = useApplicationData();
   
 
   // const appointmentsObject = dailyAppointments.map(appointment => {
@@ -37,13 +37,13 @@ export default function Application(props) {
 
     const Show = () => {
       return (<div id="show">
-                <h4>Github User: <a href={`https://github.com/${state.loginUser}`}>
-                  <h4>{state.loginUser}</h4>
-                </a></h4>
-                <h4>Name: {state.name}</h4>
                 <img src={ state.avatar } alt="nothing"></img>
+                <a href={`https://github.com/${state.loginUser}`}>
+                  <h4>@{state.loginUser}</h4>
+                </a>
+                <h4>{state.name}'s Timeline</h4>
                 <div id="opposite-timeline">
-                  <OppositeTimeline filterParam={filterParam} repositories={state.repositories} />
+                  <OppositeTimeline filterParam={filterParam} repositories={state.repositories} avatar={state.avatar}/>
                 </div> 
               </div>
       )
@@ -63,7 +63,7 @@ export default function Application(props) {
 
     return (
       <main className="App">
-        <NavBar toLiked={toLiked} />
+        <NavBar toLiked={toLiked} setStorage={ setStorage }/>
         <section class="main-container">
           <div id="search-and-filter">
             <Search onSubmit={fetchData} value={state.user || ""} onChange={(e) => setUser(e)} onClick={fetchData}/>

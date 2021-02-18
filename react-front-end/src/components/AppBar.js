@@ -41,7 +41,7 @@ export default function NavBar(props) {
                 <FavoriteBorderIcon />
               </Badge>
             </IconButton>
-          <Button color="inherit">Logout</Button>
+          <Button color="inherit" onClick={ props.setStorage }>Login</Button>
         </Toolbar>
       </AppBar>
     </div>
