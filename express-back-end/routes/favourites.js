@@ -1,6 +1,15 @@
 const router = require("express").Router();
 
 module.exports = (db) => {
+  router.get("/favourites", (request, response) => {
+    const { repoName, repoLanguage, repoDescription, gitAvatar} = request.body;
+    db.query(
+       `SELECT * FROM favourites
+        ORDER BY favourites.id`
+    ).then((res) => {
+      response.json(res.rows);
+    })
+    });
   // router.get("/appointments", (request, response) => {
   //   db.query(
   //     `
@@ -43,8 +52,8 @@ module.exports = (db) => {
       [1, repoName, repoLanguage, repoDescription, gitAvatar]
 
     )
-      .then(response => {
-        console.log("success");
+      .then(res => {
+        response.json(res);
       })
       .catch(error => console.log(error));
   });
