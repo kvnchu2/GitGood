@@ -66,7 +66,7 @@ export default function Application(props) {
         <NavBar toLiked={toLiked} setStorage={ setStorage }/>
         <section class="main-container">
           <div id="search-and-filter">
-            <Search onSubmit={fetchData} value={state.user || ""} onChange={(e) => setUser(e)} onClick={fetchData}/>
+            <Search fetchData={fetchData}/>
             <Filter setFilter={setFilter}></Filter>
           </div>
           

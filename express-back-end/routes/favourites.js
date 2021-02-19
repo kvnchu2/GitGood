@@ -66,21 +66,15 @@ module.exports = (db) => {
       .catch(error => console.log(error));
   });
 
-  // router.delete("/appointments/:id", (request, response) => {
-  //   if (process.env.TEST_ERROR) {
-  //     setTimeout(() => response.status(500).json({}), 1000);
-  //     return;
-  //   }
-
-  //   db.query(`DELETE FROM interviews WHERE appointment_id = $1::integer`, [
-  //     request.params.id
-  //   ]).then(() => {
-  //     setTimeout(() => {
-  //       response.status(204).json({});
-  //       updateAppointment(Number(request.params.id), null);
-  //     }, 1000);
-  //   });
-  // });
+  router.delete("/favourites/:owner/:name/:user_id", (request, response) => {
+    const param = [request.params.owner, request.params.name, request.params.user_id]
+    db.query(`DELETE FROM favourites
+    WHERE repoOwner = $1
+    AND repoName = $2
+    AND user_id = $3`,param).then(() => {
+        response.status(204).json({});
+    });
+  });
 
   return router;
 };
