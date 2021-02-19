@@ -36,7 +36,7 @@ export default function RepoSummary(props) {
           props.name
         }/${localStorage.getItem("username")}`
       )
-      .then((res) => {
+      .then(() => {
         setLikeBool(false);
       });
   };
@@ -45,7 +45,7 @@ export default function RepoSummary(props) {
     <div className="box">
       <FavoriteIcon
         className={"like_btn"}
-        style={likeBool ? { color: "red" } : { color: "black" }}
+        style={likeBool ? { color: "red" } : { color: "white" }}
         onClick={likeBool ? handleUnlikeClick : handleLikeClick}
       />
       <h3>{props.name}</h3>
