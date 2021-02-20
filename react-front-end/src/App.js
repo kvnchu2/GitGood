@@ -66,7 +66,7 @@ export default function Application(props) {
         <NavBar toLiked={toLiked} setStorage={ setStorage } toMain={toMain}/>
         <section class="main-container">
           <div id="search-and-filter">
-            <Search fetchData={fetchData}/>
+            <Search fetchData={fetchData} toMain={toMain}/>
             <Filter setFilter={setFilter}></Filter>
           </div>
           
