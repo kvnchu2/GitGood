@@ -28,7 +28,6 @@ export default function Application(props) {
     const toMain = () => {
       setShow("main")
     }
-    console.log(state)
     return (
       <main className="App">
 
@@ -40,10 +39,8 @@ export default function Application(props) {
           </div>
           { show==="main" && (state.loginUser ? <Show avatar={state.avatar} loginUser={state.loginUser} name={state.name} filterParam={filterParam} repositories={state.repositories} /> : <div id="show-question-mark"><img src={ state.avatar } alt="nothing"></img></div>)}
           { show==="liked" && <ShowLiked toMain={toMain}/>}
+          
         </section>
-        
-               
-        
       </main>
 );
 }

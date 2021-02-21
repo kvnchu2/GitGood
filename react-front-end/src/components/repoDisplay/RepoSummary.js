@@ -9,13 +9,12 @@ import BorderColorIcon from "@material-ui/icons/BorderColor";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
 export default function RepoSummary(props) {
-  
   const [likeBool, setLikeBool] = useState(props.userLiked);
   useEffect(() => {
     if (props.userLiked) {
       setLikeBool(true);
-    }else{
-      setLikeBool(false)
+    } else {
+      setLikeBool(false);
     }
   });
   const handleLikeClick = () => {
@@ -27,6 +26,7 @@ export default function RepoSummary(props) {
         repoDescription: props.description,
         gitAvatar: props.avatar_url,
         repoOwner: props.owner,
+        repoid: props.repoId,
       })
       .then(() => {
         setLikeBool(true);
@@ -36,8 +36,8 @@ export default function RepoSummary(props) {
   const handleUnlikeClick = () => {
     axios
       .delete(
-        `http://localhost:8081/favourites/${props.owner}/${
-          props.name
+        `http://localhost:8081/favourites/${
+          props.repoId
         }/${localStorage.getItem("username")}`
       )
       .then(() => {

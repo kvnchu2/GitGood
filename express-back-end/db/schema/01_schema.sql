@@ -1,18 +1,25 @@
 DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS favourites CASCADE;
+DROP TABLE IF EXISTS repositories CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
-  username VARCHAR(255) NOT NULL
+  username VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
 
-DROP TABLE IF EXISTS favourites CASCADE;
+
+CREATE TABLE repositories(
+  id INTEGER PRIMARY KEY NOT NULL ,
+  repoowner VARCHAR(255) NOT NULL,
+  reponame VARCHAR(255) NOT NULL,
+  repolanguage VARCHAR(255) NOT NULL,
+  repodescription VARCHAR(255),
+  gitAvatar VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE favourites (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  repoOwner VARCHAR(255) NOT NULL,
-  repoName VARCHAR(255) NOT NULL,
-  repoLanguage VARCHAR(255) NOT NULL,
-  repoDescription VARCHAR(255),
-  gitAvatar VARCHAR(255) NOT NULL
+  repository_id INTEGER REFERENCES repositories(id) ON DELETE CASCADE
 );
