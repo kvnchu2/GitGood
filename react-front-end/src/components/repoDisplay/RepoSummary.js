@@ -53,7 +53,7 @@ export default function RepoSummary(props) {
         style={likeBool ? { color: "red" } : { color: "white" }}
         onClick={likeBool ? handleUnlikeClick : handleLikeClick}
       />
-      <h3>{props.name}</h3>
+      <h3><a href={props.html_url}>{props.name}</a></h3>
       <section class="repo-content">
         <div className="info">
           <DescriptionIcon />
