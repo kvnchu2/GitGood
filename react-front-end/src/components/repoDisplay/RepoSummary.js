@@ -20,7 +20,7 @@ export default function RepoSummary(props) {
   const handleLikeClick = () => {
     axios
       .put("http://localhost:8081/favourites", {
-        username: localStorage.getItem("username"),
+        username: sessionStorage.getItem("userid"),
         repoName: props.name,
         repoLanguage: props.language || "language",
         repoDescription: props.description,
@@ -38,7 +38,7 @@ export default function RepoSummary(props) {
       .delete(
         `http://localhost:8081/favourites/${
           props.repoId
-        }/${localStorage.getItem("username")}`
+        }/${sessionStorage.getItem("userid")}`
       )
       .then(() => {
         setLikeBool(false);

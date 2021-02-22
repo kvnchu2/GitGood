@@ -9,7 +9,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import "./AppBar.css";
 import HomeIcon from "@material-ui/icons/Home";
 import GitGoodLogo from "./GitGoodLogo.png";
-import LoginForm from "./LoginForm";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -37,7 +37,7 @@ export default function NavBar(props) {
   const classes = useStyles();
 
   const [userLogin, setUserLogin] = useState("");
-  const [login, setLogin] = useState(localStorage.getItem("username"));
+  const [login, setLogin] = useState(sessionStorage.getItem("username"));
   const handleLogin = (e) => {
     setUserLogin(e.target.value);
   };
@@ -51,9 +51,20 @@ export default function NavBar(props) {
   };
 
   const clearStorage = () => {
-    localStorage.clear();
+    sessionStorage.clear();
     setLogin(false);
     window.location.href = "/";
+  };
+
+  const handleLogoutClick = () => {
+    axios
+      .put("http://localhost:8081/login", {
+        userName: sessionStorage.getItem("username"),
+        active: false,
+      })
+      .then((res) => {
+        clearStorage();
+      });
   };
 
   // const LogoutButton = () => {
@@ -109,16 +120,28 @@ export default function NavBar(props) {
             <FavoriteBorderIcon />
             {/* </Badge> */}
           </IconButton>
-          {login ? (
-            <Button color="inherit" onClick={clearStorage}>
-              Logout
-            </Button>
+          {sessionStorage.getItem("username") ? (
+            <>
+              <p>Hi, {sessionStorage.getItem("username")}</p>
+              <Button color="inherit" onClick={handleLogoutClick}>
+                Logout
+              </Button>
+            </>
           ) : (
-            <LoginForm
-              userLogin={userLogin}
-              handleLogin={handleLogin}
-              submitLogin={submitLogin}
-            />
+            <>
+              <Button
+                style={{ color: "white" }}
+                onClick={() => props.setLoginIsOpen(true)}
+              >
+                Login
+              </Button>
+              <Button
+                style={{ color: "white" }}
+                onClick={() => props.setRegisterIsOpen(true)}
+              >
+                Register
+              </Button>
+            </>
           )}
         </Toolbar>
       </AppBar>
