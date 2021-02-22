@@ -114,7 +114,7 @@ export default function OppositeTimeline(props) {
               userLiked={likedBool}
               renderPage={renderPage}
               repoId = {repository.id}
-              
+              html_url= {repository.html_url}
             />
           </div>
         </div>
