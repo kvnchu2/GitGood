@@ -3,7 +3,7 @@ import Modal from "react-modal";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { useState } from "react";
-import "./RegisterModal.css";
+import "./RegisterModal.scss";
 import axios from "axios";
 Modal.setAppElement("#root");
 export default function RegisterModal(props) {
