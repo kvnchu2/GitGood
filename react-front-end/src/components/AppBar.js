@@ -137,12 +137,14 @@ export default function NavBar(props) {
               <Button
                 style={{ color: "white" }}
                 onClick={() => props.setLoginIsOpen(true)}
+                className={classes.homeicon}
               >
                 Login
               </Button>
               <Button
                 style={{ color: "white" }}
                 onClick={() => props.setRegisterIsOpen(true)}
+                className={classes.homeicon}
               >
                 Register
               </Button>
