@@ -2,75 +2,62 @@ const router = require("express").Router();
 
 module.exports = (db) => {
   router.get("/favourites/", (request, response) => {
-    
     const { userId } = request.query;
     db.query(
       `SELECT * FROM favourites
+      JOIN repositories ON (repository_id = repositories.id)
       WHERE user_id = $1
-      ;`
-      ,[Number(userId)])
-      .then((res) => {
-        console.log(typeof response.json(res.rows));
-      });
+      ;`,
+      [Number(userId)]
+    ).then((res) => {
+      response.json(res.rows);
+    });
   });
-  // router.get("/appointments", (request, response) => {
-  //   db.query(
-  //     `
-  //     SELECT
-  //       appointments.id,
-  //       appointments.time,
-  //       CASE WHEN interviews.id IS NULL
-  //       THEN NULL
-  //       ELSE json_build_object('student', interviews.student, 'interviewer', interviews.interviewer_id)
-  //       END AS interview
-  //     FROM appointments
-  //     LEFT JOIN interviews ON interviews.appointment_id = appointments.id
-  //     GROUP BY appointments.id, interviews.id, interviews.student, interviews.interviewer_id
-  //     ORDER BY appointments.id
-  //   `
-  //   ).then(({ rows: appointments }) => {
-  //     response.json(
-  //       appointments.reduce(
-  //         (previous, current) => ({ ...previous, [current.id]: current }),
-  //         {}
-  //       )
-  //     );
-  //   });
-  // });
-
-  // router.get("/favourites", (request, response) => {
-  //   db.query(
-  //     `SELECT * FROM favourites
-  //     ORDER BY favourites.id;`
-  //   )
-  //     .then(res => console.log(res.rows));
-  // });
 
   router.put("/favourites", (request, response) => {
-    
-
-    const { username, repoName, repoLanguage, repoDescription, gitAvatar, repoOwner } = request.body;
-    
+    console.log("requesting");
+    const {
+      repoid,
+      username,
+      repoName,
+      repoLanguage,
+      repoDescription,
+      gitAvatar,
+      repoOwner,
+    } = request.body;
     db.query(
-      `INSERT INTO favourites (user_id, repoName, repoLanguage, repoDescription, gitAvatar, repoOwner)
-       VALUES ($1, $2, $3, $4, $5, $6 )
-      ;`,
-
-      [username, repoName, repoLanguage, repoDescription, gitAvatar, repoOwner]
-
+      `INSERT INTO repositories(id, reponame, repolanguage,repodescription,gitAvatar, repoowner)
+    VALUES ($1, $2, $3, $4, $5, $6 ) ON CONFLICT (id) do nothing;`,
+      [repoid, repoName, repoLanguage, repoDescription, gitAvatar, repoOwner]
     )
-      .then(res => {
-        response.json(res);
+
+      .then((res) => {
+        db.query(
+          `
+          INSERT INTO favourites (user_id, repository_id)
+           VALUES ($1,$2 )
+          ;`,
+
+          [username, repoid]
+        ).then((res) => {
+          console.log("requested");
+          response.json(res);
+        });
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   });
 
-  router.delete("/favourites/:owner/:name/:user_id", (request, response) => {
-    const param = [request.params.owner, request.params.name, request.params.user_id]
-    db.query(`DELETE FROM favourites
-    WHERE repoOwner = $1
-    AND repoName = $2
-    AND user_id = $3`,param).then(() => {
+  router.delete("/favourites/:repo_id/:user_id", (request, response) => {
+    const param = [
+      request.params.repo_id,
+      request.params.user_id,
+    ];
+    db.query(
+      `DELETE FROM favourites
+    WHERE repository_id = $1
+    AND user_id = $2`,
+      param
+    ).then(() => {
       response.status(204).json({});
     });
   });

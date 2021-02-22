@@ -20,11 +20,10 @@ export default function OppositeTimeline(props) {
     setNum(prev=>prev+1)
   }
   useEffect(() => {
-    console.log("request")
-    if (localStorage.getItem("username")) {
+    if (sessionStorage.getItem("userid")) {
       axios.get("http://localhost:8081/favourites", {
         params: {
-          userId: localStorage.getItem("username"),
+          userId: sessionStorage.getItem("userid"),
         },
       }).then((res) => {
         setUserLiked(res.data);
@@ -114,6 +113,7 @@ export default function OppositeTimeline(props) {
               owner={repository.owner.login}
               userLiked={likedBool}
               renderPage={renderPage}
+              repoId = {repository.id}
               
             />
           </div>

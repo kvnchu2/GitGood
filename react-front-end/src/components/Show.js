@@ -7,7 +7,7 @@ export default function Show(props){
               <a target="_blank" href={`https://github.com/${props.loginUser}`}>
                 <h4>@{props.loginUser}</h4>
               </a>
-              <h4>{props.name}'s Timeline</h4>
+              {props.name && <h4>{props.name}'s Timeline</h4>}
               <div id="opposite-timeline">
                 <OppositeTimeline filterParam={props.filterParam} repositories={props.repositories} avatar={props.avatar}/>
               </div> 

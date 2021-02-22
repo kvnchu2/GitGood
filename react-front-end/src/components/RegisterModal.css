@@ -1,0 +1,9 @@
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.textFields{
+  display: flex;
+  flex-direction: column;
+}
