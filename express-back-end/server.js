@@ -32,12 +32,10 @@ App.use(cookieSession({
 
 // seperated routes
 const favourites = require("./routes/favourites");
-const loginRoutes = require("./routes/login");
 
 // Resource route for favourites:
 // App.use("/favourites", favourites(db));
 App.use("/", favourites(db));
-App.use("/", loginRoutes(db));
 
 // Sample GET route
 App.get('/', (req, res) => res.json({message: "Seems to work!"}));
