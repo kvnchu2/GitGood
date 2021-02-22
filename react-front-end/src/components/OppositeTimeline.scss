@@ -46,6 +46,7 @@ body{margin-top:20px;
       color: #8796af;
     }
     &:nth-child(even) .timeline-content {
+
         background-color: #663399;
         /* Fallback Color */
         background-image: -webkit-gradient(linear, left top, left bottom, from(#fc6d4c), to(#ff5000));
@@ -65,6 +66,7 @@ body{margin-top:20px;
     &:nth-child(even) .timeline-content:after {
         left: -39px;
         border-right: 18px solid #6633FF;
+
         border-top: 10px solid transparent;
         border-bottom: 10px solid transparent;
     }
