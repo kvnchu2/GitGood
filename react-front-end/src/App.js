@@ -1,6 +1,6 @@
 import React from "react";
 import useApplicationData from "./useApplicationData";
-import "./App.css";
+import "./App.scss";
 import Search from "./components/search.js";
 import OppositeTimeline from "./components/OppositeTimeline.js";
 import { userData, repoData } from "./backupData";
@@ -58,8 +58,8 @@ export default function Application(props) {
       <NavBar toLiked={toLiked} setStorage={setStorage} setRegisterIsOpen={setRegisterIsOpen} setLoginIsOpen={setLoginIsOpen} />
       <section class="main-container">
         <div id="search-and-filter">
-          <Search fetchData={fetchData} toMain={toMain} />
-          <Filter setFilter={setFilter}></Filter>
+          <Search fetchData={fetchData} toMain={toMain} setParam={setParam} />
+          <Filter setFilter={setFilter} repositories={state.repositories}></Filter>
         </div>
         {show === "main" &&
           (state.loginUser ? (

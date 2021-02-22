@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import TextField from "@material-ui/core/TextField";
+import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -23,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
   buttons: {
     display: "flex",
   },
-  
 }));
 
 export default function Filter(props) {
@@ -34,6 +34,9 @@ export default function Filter(props) {
     language: "",
     repoName: "",
   });
+  useEffect(() => {
+    setState({ dateBegin: "", dateEnd: "", language: "", repoName: "" });
+  },[props.repositories]);
 
   const clear = () => {
     setState((prev) => ({
@@ -73,8 +76,8 @@ export default function Filter(props) {
           InputLabelProps={{
             shrink: true,
             style: {
-              fontSize: 20
-            }
+              fontSize: 20,
+            },
           }}
         />
       </div>
@@ -88,8 +91,8 @@ export default function Filter(props) {
           InputLabelProps={{
             shrink: true,
             style: {
-              fontSize: 20
-            }
+              fontSize: 20,
+            },
           }}
         />
         <TextField
@@ -101,8 +104,8 @@ export default function Filter(props) {
           InputLabelProps={{
             shrink: true,
             style: {
-              fontSize: 20
-            }
+              fontSize: 20,
+            },
           }}
         />
       </div>
@@ -116,8 +119,8 @@ export default function Filter(props) {
           InputLabelProps={{
             shrink: true,
             style: {
-              fontSize: 20
-            }
+              fontSize: 20,
+            },
           }}
         />
       </div>
