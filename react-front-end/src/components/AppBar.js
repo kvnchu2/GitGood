@@ -6,7 +6,6 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import "./AppBar.css";
 import HomeIcon from "@material-ui/icons/Home";
 import GitGoodLogo from "./GitGoodLogo.png";
 import axios from "axios";
@@ -30,6 +29,11 @@ const useStyles = makeStyles((theme) =>
       maxWidth: 160,
       float: "left",
     },
+    homeicon: {
+      '&:hover': {
+        transform: "translateY(-3px) scale(1.06)"
+      }
+    }
   })
 );
 
@@ -109,12 +113,13 @@ export default function NavBar(props) {
             color="inherit"
             onClick={(event) => (window.location.href = "/")}
           >
-            <HomeIcon />
+            <HomeIcon className={classes.homeicon}/>
           </IconButton>
           <IconButton
             aria-label="show 4 new favorites"
             color="inherit"
             onClick={() => props.toLiked()}
+            className={classes.homeicon}
           >
             {/* <Badge badgeContent={4} color="secondary"> */}
             <FavoriteBorderIcon />
