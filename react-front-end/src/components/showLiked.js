@@ -28,13 +28,12 @@ const columns = [
 
 
 export default function ShowLiked(props) {
-  console.log(localStorage.getItem('username'))
 
   const [state, setState] = useState({favouritesData:[]});
   
   useEffect(() => {
     Axios.get('http://localhost:8081/favourites', {params: {
-      userId:localStorage.getItem('username')
+      userId:sessionStorage.getItem('userid')
   }})
       .then(res => setState({favouritesData: res.data}));
   }, [])

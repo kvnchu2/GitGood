@@ -30,6 +30,7 @@ export default function Search(props) {
     e.preventDefault()
     props.fetchData(userName);
     setUserName("");
+    props.setParam("")
     props.toMain();
   }
     return (

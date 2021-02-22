@@ -51,7 +51,7 @@ export default function useApplicationData() {
 
 
   const setStorage = (login) => {
-    localStorage.setItem('username', login)
+    sessionStorage.setItem('username', login)
   }
   
 
