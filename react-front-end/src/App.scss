@@ -107,7 +107,9 @@
   padding-bottom: 20px
 }
 
-
+#github-link {
+  display: flex;
+}
 
 
 
@@ -230,6 +232,17 @@
     padding-left: 8px;
     padding-bottom: 20px
   }
+
+  // .scroll-button {
+  //   .MuiIconButton-label {
+  //     position: fixed;
+  //     right: 5px
+  //   }
+  //   .MuiTouchRipple-root {
+  //     position: fixed;
+  //     right: 5px
+  //   }
+  // }
 }
 
 

@@ -17,7 +17,6 @@ import Scroll from './components/scroll.js'
 
 export default function Application(props) {
   const { setStorage, setUser, fetchData, state} = useApplicationData();
-
     const [filterParam, setParam] = useState();
     const setFilter = (param) =>{
       setParam(prev=>(param))
@@ -32,7 +31,6 @@ export default function Application(props) {
     console.log(state)
     return (
       <main className="App">
-
         <NavBar toLiked={toLiked} setStorage={ setStorage }/>
         <section class="main-container">
           <div id="search-and-filter">
@@ -42,11 +40,8 @@ export default function Application(props) {
           <Scroll showBelow={250} />
           { show==="main" && (state.loginUser ? <Show avatar={state.avatar} loginUser={state.loginUser} name={state.name} filterParam={filterParam} repositories={state.repositories} /> : <div id="show-question-mark"><img src={ state.avatar } alt="nothing"></img></div>)}
           { show==="liked" && <ShowLiked toMain={toMain}/>}
-        </section>
-        
-               
-        
+        </section>  
       </main>
-);
+    );
 }
             
