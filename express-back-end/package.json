@@ -9,6 +9,7 @@
     "go": "nodemon server.js"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "body-parser": "^1.18.3",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",

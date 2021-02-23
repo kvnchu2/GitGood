@@ -4,7 +4,7 @@ import { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import "./RegisterModal.css";
+import "./RegisterModal.scss";
 Modal.setAppElement("#root");
 
 export default function LoginModal(props) {

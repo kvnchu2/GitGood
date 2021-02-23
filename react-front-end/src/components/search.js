@@ -29,7 +29,7 @@ export default function Search(props) {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    props.fetchData(userName.toString());
+    props.fetchData(userName);
     setUserName("");
     props.setParam("")
     props.toMain();

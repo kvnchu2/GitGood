@@ -46,6 +46,8 @@ export default function RepoSummary(props) {
       });
   };
 
+  let url = `https://github.com/${props.owner}/${props.name}`
+
   return (
     <div className="box">
       <FavoriteIcon
@@ -53,7 +55,7 @@ export default function RepoSummary(props) {
         style={likeBool ? { color: "red" } : { color: "white" }}
         onClick={likeBool ? handleUnlikeClick : handleLikeClick}
       />
-      <h3>{props.name}</h3>
+      <h3><a href={url}>{props.name}</a></h3>
       <section class="repo-content">
         <div className="info">
           <DescriptionIcon />
