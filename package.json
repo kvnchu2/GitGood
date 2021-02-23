@@ -9,15 +9,20 @@
     "go": "nodemon server.js"
   },
   "dependencies": {
+    "@heroku/buildpack-registry": "^1.0.1",
+    "async-file": "^2.0.2",
     "body-parser": "^1.18.3",
+    "cli-ux": "^4.9.3",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.16.4",
+    "got": "^6.7.1",
     "heroku": "^7.48.0",
     "morgan": "^1.10.0",
     "nodemon": "^1.18.7",
     "pg": "^7.18.2",
-    "pg-native": "^3.0.0"
+    "pg-native": "^3.0.0",
+    "phoenix": "^1.5.7"
   }
 }
