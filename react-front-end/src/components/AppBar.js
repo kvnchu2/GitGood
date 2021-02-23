@@ -115,6 +115,8 @@ export default function NavBar(props) {
           >
             <HomeIcon className={classes.homeicon}/>
           </IconButton>
+          {sessionStorage.getItem("username") ? (
+            <>
           <IconButton
             aria-label="show 4 new favorites"
             color="inherit"
@@ -125,8 +127,6 @@ export default function NavBar(props) {
             <FavoriteBorderIcon />
             {/* </Badge> */}
           </IconButton>
-          {sessionStorage.getItem("username") ? (
-            <>
               <p>Hi, {sessionStorage.getItem("username")}</p>
               <Button color="inherit" onClick={handleLogoutClick}>
                 Logout

@@ -16,31 +16,39 @@ import axios from "axios";
 
 export default function Application(props) {
   window.addEventListener("beforeunload", function (e) {
-    e.preventDefault()
-    if(sessionStorage.getItem('username')){
+    e.preventDefault();
+    if (sessionStorage.getItem("username")) {
       axios
         .put("http://localhost:8081/login", {
           userName: sessionStorage.getItem("username"),
           active: false,
-        }).then(res=>{
-          console.log('logged out')
         })
+        .then((res) => {
+          console.log("logged out");
+        });
     }
   });
   window.onload = function () {
-    if(sessionStorage.getItem('username')){
+    if (sessionStorage.getItem("username")) {
       axios
         .put("http://localhost:8081/login", {
           userName: sessionStorage.getItem("username"),
           active: true,
-        }).then(res=>{
-          console.log(res)
-          console.log('logged in')
         })
+        .then((res) => {
+          console.log(res);
+          console.log("logged in");
+        });
     }
   };
-  const { setStorage, setUser, fetchData, state } = useApplicationData();
-  const [registerIsOpen,setRegisterIsOpen]=useState(false);
+  const {
+    setStorage,
+    setUser,
+    fetchData,
+    state,
+    errorMsg,
+  } = useApplicationData();
+  const [registerIsOpen, setRegisterIsOpen] = useState(false);
   const [loginIsOpen, setLoginIsOpen] = useState(false);
   const [filterParam, setParam] = useState();
   const setFilter = (param) => {
@@ -55,29 +63,44 @@ export default function Application(props) {
   };
   return (
     <main className="App">
-      <NavBar toLiked={toLiked} setStorage={setStorage} setRegisterIsOpen={setRegisterIsOpen} setLoginIsOpen={setLoginIsOpen} />
-      <section class="main-container">
+      <NavBar
+        toLiked={toLiked}
+        setStorage={setStorage}
+        setRegisterIsOpen={setRegisterIsOpen}
+        setLoginIsOpen={setLoginIsOpen}
+      />
+      <section className="main-container">
         <div id="search-and-filter">
           <Search fetchData={fetchData} toMain={toMain} setParam={setParam} />
-          <Filter setFilter={setFilter} repositories={state.repositories}></Filter>
+          <div id="errorMsg">{errorMsg}</div>
+          <Filter
+            setFilter={setFilter}
+            repositories={state.repositories}
+          ></Filter>
         </div>
         {show === "main" &&
           (state.loginUser ? (
             <Show
-            avatar={state.avatar}
-            loginUser={state.loginUser}
-            name={state.name}
-            filterParam={filterParam}
-            repositories={state.repositories}
+              avatar={state.avatar}
+              loginUser={state.loginUser}
+              name={state.name}
+              filterParam={filterParam}
+              repositories={state.repositories}
             />
-            ) : (
-              <div id="show-question-mark">
+          ) : (
+            <div id="show-question-mark">
               <img src={state.avatar} alt="nothing"></img>
             </div>
           ))}
         {show === "liked" && <ShowLiked toMain={toMain} />}
-          <RegisterModal registerIsOpen={registerIsOpen} setRegisterIsOpen={setRegisterIsOpen}></RegisterModal>
-          <LoginModal loginIsOpen={loginIsOpen} setLoginIsOpen={setLoginIsOpen}></LoginModal>
+        <RegisterModal
+          registerIsOpen={registerIsOpen}
+          setRegisterIsOpen={setRegisterIsOpen}
+        ></RegisterModal>
+        <LoginModal
+          loginIsOpen={loginIsOpen}
+          setLoginIsOpen={setLoginIsOpen}
+        ></LoginModal>
       </section>
     </main>
   );

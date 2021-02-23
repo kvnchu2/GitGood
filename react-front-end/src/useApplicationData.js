@@ -15,6 +15,7 @@ export default function useApplicationData() {
     user: "",
     repositories: []
   });
+  const [errorMsg, setErrorMsg] = useState('')
   useEffect(()=>{
     console.log("initial render");
   },[])
@@ -29,10 +30,13 @@ export default function useApplicationData() {
       axios.get(`https://api.github.com/users/${userName}/repos`)
     ])
     .then((all) => {
+      setErrorMsg('')
       setState(prev => ({
         ...prev, user:userName, avatar: all[0].data.avatar_url, loginUser: all[0].data.login, name: all[0].data.name, repositories: all[1].data 
       }));
-    })  
+    }).catch(err=>{
+      setErrorMsg("cannot find user")
+    }) 
   }
   
   
@@ -55,5 +59,5 @@ export default function useApplicationData() {
   }
   
 
-  return { setStorage, setUser, fetchData, state};
+  return { setStorage, setUser, fetchData, state, errorMsg};
 }
