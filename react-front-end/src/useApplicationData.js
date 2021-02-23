@@ -24,17 +24,58 @@ export default function useApplicationData() {
   
   //------------COMMENT OUT THIS FETCHDATA IF USING BACKUP DATA--------------
   const fetchData = (userName) => {
+    const githubUrl = 'https://api.github.com/graphql'
+
+    const token = 'f6b482871639370105c0ae63fccc3c947a77217d'
+
+    const oauth = {Authorization: 'bearer ' + token}
+
+    const query = 'query ($userName: String! ){' +
+                  'user(login: $userName){' +
+                    'repositories(first: 50, isFork: false) {' +
+                      'nodes {' +
+                        'id,' +
+                        'name,' +
+                        'url,' +
+                        'description,' +
+                        'createdAt,' +
+                        'updatedAt,' +
+                        'primaryLanguage {' +
+                          'name' +
+                        '},' +
+                        'languages(first: 100) {' +
+                          'nodes {' +
+                            'name' +
+                          '}' + 
+                        '},' +
+                        'owner {' +
+                          'login,' +
+                          'avatarUrl' +
+                        '}' +
+                      '}' +
+                    '}' +
+                  '}' +
+                '}'  
+
+    
     Promise.all([
       axios.get(`https://api.github.com/users/${userName}`), // You can simply make your requests to “/api/whatever you want”
-      axios.get(`https://api.github.com/users/${userName}/repos`)
+      axios.get(`https://api.github.com/users/${userName}/repos`),
+      axios.post(githubUrl, {query: query, variables: { userName: userName} }, {headers: oauth})
     ])
     .then((all) => {
+      console.log("hello", all[2].data)
+      // all[2].data.data.user.repositories.nodes[6].languages.nodes[0].name
       setState(prev => ({
-        ...prev, user:userName, avatar: all[0].data.avatar_url, loginUser: all[0].data.login, name: all[0].data.name, repositories: all[1].data 
+        ...prev, user:userName, avatar: all[0].data.avatar_url, loginUser: all[0].data.login, name: all[0].data.name, repositories: all[2].data.data.user.repositories.nodes
       }));
     })  
   }
   
+
+  
+
+          
   
   const setUser = (value) => {
     setState((prev)=>({...prev,user: value

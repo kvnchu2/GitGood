@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   textfield: {
-    width: "50%"
+    width: "50%",
+    fontSize: 30
   }
 }));
 export default function Search(props) {
@@ -28,7 +29,7 @@ export default function Search(props) {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
-    props.fetchData(userName);
+    props.fetchData(userName.toString());
     setUserName("");
     props.setParam("")
     props.toMain();

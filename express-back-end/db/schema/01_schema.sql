@@ -11,7 +11,7 @@ CREATE TABLE users (
 
 
 CREATE TABLE repositories(
-  id INTEGER PRIMARY KEY NOT NULL ,
+  id VARCHAR(255) PRIMARY KEY NOT NULL ,
   repoowner VARCHAR(255) NOT NULL,
   reponame VARCHAR(255) NOT NULL,
   repolanguage VARCHAR(255) NOT NULL,
@@ -22,5 +22,5 @@ CREATE TABLE repositories(
 CREATE TABLE favourites (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  repository_id INTEGER REFERENCES repositories(id) ON DELETE CASCADE
+  repository_id VARCHAR(255) REFERENCES repositories(id) ON DELETE CASCADE
 );

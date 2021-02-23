@@ -73,7 +73,7 @@ export default function RepoSummary(props) {
           <Button
             variant="text"
             color="primary"
-            onClick={() => props.showLanguages(props.languages_url)}
+            onClick={() => props.showLanguages(props)}
           >
             overview
           </Button>

@@ -5,7 +5,7 @@ export default function Repository(props) {
       <div>
         <p>{props.name}</p>
         <p>{props.description}</p>
-        <p>{props["created_at"]}</p>
+        <p>{props["createdAt"]}</p>
       </div>
     );
 }
