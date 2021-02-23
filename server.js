@@ -4,7 +4,7 @@ require('dotenv').config();
 const Express = require('express');
 const App = Express();
 const BodyParser = require('body-parser');
-const PORT = 8081;
+const PORT = require('process').env.PORT || 8081
 const cookieSession = require("cookie-session");
 const cors = require("cors");
 
