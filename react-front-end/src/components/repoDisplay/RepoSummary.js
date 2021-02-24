@@ -55,7 +55,7 @@ export default function RepoSummary(props) {
       />
       <h3><a href={props.html_url}>{props.name}</a></h3>
       <section class="repo-content">
-        <div className="info">
+        <div className="info-description">
           <DescriptionIcon />
           {props.description || "Description"}
         </div>
@@ -67,7 +67,7 @@ export default function RepoSummary(props) {
             </div>
           )}
         </div>
-        <div className="info">
+        <div className="info-language">
           <LanguageIcon />
           <p>{props.language || "Language"}</p>
           <Button

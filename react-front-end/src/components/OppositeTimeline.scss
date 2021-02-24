@@ -99,7 +99,7 @@ body{margin-top:20px;
         background-image: linear-gradient(top, #1379bb, #5a99ee);
         margin-right: 40px;
         margin-left: 0;
-        text-align: right;
+        text-align: left;
     }
     &:nth-child(odd) .timeline-content:after {
         right: -39px;
@@ -167,7 +167,7 @@ body{margin-top:20px;
   }
   
 
-  @media (max-width: 767px) {
+  @media (max-width: 1000px) {
       .timeline {
           padding: 15px 10px;
       }
