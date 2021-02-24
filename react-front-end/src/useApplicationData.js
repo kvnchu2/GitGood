@@ -39,7 +39,6 @@ export default function useApplicationData() {
     }) 
   }
   
-  
   const setUser = (value) => {
     setState((prev)=>({...prev,user: value
     }));
