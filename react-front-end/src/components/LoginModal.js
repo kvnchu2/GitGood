@@ -5,8 +5,9 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import "./RegisterModal.scss";
-Modal.setAppElement("#root");
+import bcrypt from "bcryptjs";
 
+Modal.setAppElement("#root");
 export default function LoginModal(props) {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +34,7 @@ export default function LoginModal(props) {
         },
       })
       .then((res) => {
-        if (!res.data.rows[0] || res.data.rows[0].password !== password) {
+        if (!res.data.rows[0] || !bcrypt.compareSync(password, res.data.rows[0].password)){
           setError("username or password is invalid");
           return;
         }
