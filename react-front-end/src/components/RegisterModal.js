@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import { useState } from "react";
 import "./RegisterModal.scss";
 import axios from "axios";
+import bcrypt from "bcryptjs";
 Modal.setAppElement("#root");
 export default function RegisterModal(props) {
   const [userName, setUsername] = useState("");
@@ -22,10 +23,12 @@ export default function RegisterModal(props) {
       setError("User name and password cannot be empty");
       return;
     }
+    var salt = bcrypt.genSaltSync(10);
+    var hashed = bcrypt.hashSync(password, salt);
     axios
       .put("http://localhost:8081/register", {
         userName: userName,
-        password: password,
+        password: hashed,
       })
       .then((res) => {
         if (res.data.code && res.data.code === "23505") {
