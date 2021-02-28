@@ -1,9 +1,27 @@
 ## Introduction
 
-This project was created as a means to visualize github information in a user-friendly and accessible way. Using Github's REST API v3, we were able to extract information from user profiles to display a timeline of repositories. Each repository box contains information such as: repository name, date created, languages used, and contributors. 
+This project was created as a means to visualize github information in a user-friendly and accessible way. Using Github's REST API v3, we were able to extract information from user profiles to display a timeline of repositories. Each repository box contains information such as: repository name, date created, languages used, and contributors. The project also has a filter feature that allows users to filter by repository name, last updated before, last updated after, and language. 
+
+Below are some screenshots of the main features:
 
 
+Home page
+![home page](https://github.com/kvnchu2/GitGood/blob/master/docs/home-page.jpeg?raw=true)
 
+Register pop-up
+![register](https://github.com/kvnchu2/GitGood/blob/master/docs/register.jpeg?raw=true)
+
+User search
+![user-search](https://github.com/kvnchu2/GitGood/blob/master/docs/user-search.jpeg?raw=true)
+
+Languages Pie Chart
+![languages](https://github.com/kvnchu2/GitGood/blob/master/docs/languages-pie-chart.jpeg?raw=true)
+
+Favourites
+![favourites](https://github.com/kvnchu2/GitGood/blob/master/docs/favourites.jpeg?raw=true)
+
+Contributors
+![contributors](https://github.com/kvnchu2/GitGood/blob/master/docs/contributors.jpeg?raw=true)
 
 
 ## Running the projects
