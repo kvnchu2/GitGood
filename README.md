@@ -2,7 +2,7 @@
 
 This project was created as a means to visualize github information in a user-friendly and accessible way. Using Github's REST API v3, we were able to extract information from user profiles to display a timeline of repositories. Each repository box contains information such as: repository name, date created, languages used, and contributors. The project also has a filter feature that allows users to filter by repository name, last updated before, last updated after, and language. 
 
-## Technologies Used
+### Technologies Used
 ReactJS, ExpressJS, MaterialUI, Bootstrap, SCSS, CanvasJS, Axios
 
 Below are some screenshots of the main features:
