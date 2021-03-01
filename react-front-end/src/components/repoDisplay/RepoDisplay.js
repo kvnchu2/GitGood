@@ -12,8 +12,8 @@ export default function RepoDisplay(props) {
     languageData: "",
     contributorData:""
   });
-  const showLanguages = (url) => {
-    axios.get(url).then((response) => {
+  const showLanguages = (props) => {
+    axios.get(`https://api.github.com/repos/${props.owner}/${props.name}/languages`).then((response) => {
       setState((prev) => ({
         ...prev,
         show: "language",
@@ -23,7 +23,7 @@ export default function RepoDisplay(props) {
   };
 
   const showContributors=(url)=>{
-    axios.get(url).then((response) => {
+    axios.get(`https://api.github.com/repos/${props.owner}/${props.name}/contributors`).then((response) => {
       console.log(response.data);
       setState((prev) => ({
         ...prev,

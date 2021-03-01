@@ -4,7 +4,7 @@ require('dotenv').config();
 const Express = require('express');
 const App = Express();
 const BodyParser = require('body-parser');
-const PORT = require('process').env.PORT || 8081;
+const PORT = 8081;
 const cookieSession = require("cookie-session");
 const cors = require("cors");
 
@@ -33,11 +33,13 @@ App.use(cookieSession({
 // seperated routes
 const favourites = require("./routes/favourites");
 const loginRoutes = require("./routes/users");
+const apiRoutes = require("./routes/apiRoutes");
 
 // Resource route for favourites:
 // App.use("/favourites", favourites(db));
 App.use("/", favourites(db));
 App.use("/", loginRoutes(db));
+App.use("/", apiRoutes(db));
 
 // Sample GET route
 App.get('/', (req, res) => res.json({message: "Seems to work!"}));

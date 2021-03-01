@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from "react";
+import dotenv from 'dotenv';
 
 //---------------UNCOMMENT IF USING BACKUP DATA----------------
 // import {userData, repoData} from "./backupData.js"
@@ -15,7 +16,6 @@ export default function useApplicationData() {
     user: "",
     repositories: []
   });
-  const [errorMsg, setErrorMsg] = useState('')
   useEffect(()=>{
     console.log("initial render");
   },[])
@@ -23,20 +23,23 @@ export default function useApplicationData() {
     setState( prev =>( {...prev, url: `https://api.github.com/users/${state.user}`, repoUrl: `https://api.github.com/users/${state.user}/repos`}))
   },[state.user])
   
+  dotenv.config();
   //------------COMMENT OUT THIS FETCHDATA IF USING BACKUP DATA--------------
   const fetchData = (userName) => {
+    
     Promise.all([
       axios.get(`https://api.github.com/users/${userName}`), // You can simply make your requests to “/api/whatever you want”
-      axios.get(`https://api.github.com/users/${userName}/repos`)
+      axios.get(`https://api.github.com/users/${userName}/repos`),
+      axios.get('http://localhost:8081/repositories', {params: {
+        userName: userName
+    }})
     ])
     .then((all) => {
-      setErrorMsg('')
+      console.log(all[2].data)
       setState(prev => ({
-        ...prev, user:userName, avatar: all[0].data.avatar_url, loginUser: all[0].data.login, name: all[0].data.name, repositories: all[1].data 
+        ...prev, user:userName, avatar: all[0].data.avatar_url, loginUser: all[0].data.login, name: all[0].data.name, repositories: all[2].data.user.repositories.nodes
       }));
-    }).catch(err=>{
-      setErrorMsg("cannot find user")
-    }) 
+    })  
   }
   
   const setUser = (value) => {
@@ -58,5 +61,5 @@ export default function useApplicationData() {
   }
   
 
-  return { setStorage, setUser, fetchData, state, errorMsg};
+  return { setStorage, setUser, fetchData, state};
 }
