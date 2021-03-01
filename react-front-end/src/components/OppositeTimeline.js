@@ -66,11 +66,11 @@ export default function OppositeTimeline(props) {
   });
   const monthObject = {"01":"January","02":"February","03":"March","04":"April","05":"May","06":"June","07":"July","08":"August","09":"September","10":"October","11":"November","12":"December"}
   const repositoriesObject = repositoryArray
-    .sort((a, b) => new Date(b["updated_at"]) - new Date(a["updated_at"]))
+    .sort((a, b) => new Date(b["updatedAt"]) - new Date(a["updatedAt"]))
     .map((repository) => {
-      const day = repository["updated_at"].split("T")[0].split("-")[2];
-      const year = repository["updated_at"].split("T")[0].split("-")[0];
-      const month = monthObject[repository["updated_at"].split("T")[0].split("-")[1]];
+      const day = repository["updatedAt"].split("T")[0].split("-")[2];
+      const year = repository["updatedAt"].split("T")[0].split("-")[0];
+      const month = monthObject[repository["updatedAt"].split("T")[0].split("-")[1]];
       let liked = "";
       if (userLiked) {
         liked = userLiked.filter((repo) => {
@@ -105,16 +105,14 @@ export default function OppositeTimeline(props) {
             <RepoDisplay
               name={repository.name}
               description={repository.description}
-              created_at={repository["created_at"]}
-              language={repository.language}
-              languages_url={repository["languages_url"]}
-              contributors_url={repository.contributors_url}
-              avatar_url={repository.owner.avatar_url}
+              created_at={repository.createdAt}
+              language={repository.primaryLanguage ? repository.primaryLanguage.name : null }
+              languages_url={repository.languages.nodes ? repository.languages.nodes : null}
+              avatar_url={repository.owner.avatarUrl}
               owner={repository.owner.login}
               userLiked={likedBool}
               renderPage={renderPage}
               repoId = {repository.id}
-              html_url= {repository.html_url}
             />
           </div>
         </div>
