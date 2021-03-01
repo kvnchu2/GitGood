@@ -1,9 +1,9 @@
 ## Introduction
 
-This project was created as a means to visualize github information in a user-friendly and accessible way. Using Github's REST API v3, we were able to extract information from user profiles to display a timeline of repositories. Each repository box contains information such as: repository name, date created, languages used, and contributors. The project also has a filter feature that allows users to filter by repository name, last updated before, last updated after, and language. 
+This project was created as a means to visualize github information in a user-friendly and accessible way. Using Github's REST API v3 and GraphQL API v4, we were able to extract information from user profiles to display a timeline of repositories. Each repository box contains information such as: repository name, date created, languages used, and contributors. The project also has a filter feature that allows users to filter by repository name, last updated before, last updated after, and language. 
 
 ### Technologies Used
-ReactJS, ExpressJS, MaterialUI, Bootstrap, SCSS, CanvasJS, Axios
+ReactJS, ExpressJS, MaterialUI, Bootstrap, SCSS, CanvasJS, Axios, GraphQL
 
 Below are some screenshots of the main features:
 
@@ -35,6 +35,8 @@ In one terminal, `cd` into `react-front-end`. Run `npm install` or `yarn` to ins
 
 In the other terminal, run `npm install` or `yarn` to install the dependencies, then `npm start` or `yarn start` to launch the server.
 
-In the browser, you can click on the button and see the data get loaded.
+## Adding Personal Access Token
 
-If this doesn't work, please message me!
+In order for the search feature to work, you will need to get your own personal access token from github. Github currently requires authentication in order to query their API via GraphQL. 
+
+Once you have a personal access token, paste it into the .env file. 
